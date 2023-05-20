@@ -1,0 +1,215 @@
+@import "./index.css";
+
+.headinglg {
+    font-size: 1.8rem;
+    font-weight: var(--fw-md);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: var(--clr-text-dark);
+}
+
+.headingmd {
+    font-size: 1rem;
+    font-weight: var(--fw-md);
+    color: var(--clr-text-dark);
+    margin-top: 0.6rem;
+}
+
+.bodytextlgdark {
+    font-size: 1rem;
+    font-weight: var(--fw-rg);
+    color: var(--clr-text-dark);
+}
+
+.bodytextlglight {
+    font-size: 1rem;
+    font-weight: var(--fw-rg);
+    color: var(--clr-text-light);
+}
+
+.bodytextsmdark {
+    font-size: 0.875rem;
+    font-weight: var(--fw-md);
+    color: var(--clr-text-dark);
+}
+
+.bodytextsmlight {
+    font-size: 0.875rem;
+    font-weight: var(--fw-rg);
+    color: var(--clr-text-light);
+}
+
+.headerlink {
+    font-size: 0.8rem;
+    font-weight: var(--fw-sb);
+    color: var(--clr-neutral-100);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flexbetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexgap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+  
+.btn {
+    text-decoration: none;
+    display: inline-flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+    font-weight: var(--fw-md);
+}
+
+.btn_cancel {
+    background-color: var(--clr-neutral-100);
+    border: 1px var(--clr-border-dark) solid;
+    color: var(--clr-text-dark);
+}
+
+.btn_submit {
+    background-color: var(--clr-primary-800);
+    color: var(--clr-neutral-100);
+}
+
+.btn_cancel:hover{
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF;
+}
+.btn_submit:hover {
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF;
+}
+
+.btn_previous {
+    background-color: var(--clr-neutral-100);
+    border: 1px var(--clr-border-dark) solid;
+}
+
+.btn_next {
+    background-color: var(--clr-neutral-100);
+    border: 1px var(--clr-border-dark) solid;
+}
+
+.btn_close {
+    margin-left: 1rem;
+    padding: 0;
+    background-color: var(--clr-sucess);
+}
+
+.btn_next:hover{
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF;
+}
+.btn_previous:hover {
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px #F4EBFF;
+}
+
+.btn[data-icon="back-arrow"]::before {
+    content: "";
+    background-image: url("./icons/arrow-left.svg");  
+    background-position: center;
+    background-size: cover;
+    width: 18px;
+    aspect-ratio: 1;
+}
+  
+.btn[data-icon="front-arrow"]::after {
+    content: "";
+    background-image: url("./icons/arrow-right.svg");  
+    background-position: center;
+    background-size: cover;
+    width: 18px;
+    aspect-ratio: 1;
+}
+
+.btn[data-icon="close-icon"]::after {
+    content: "";
+    background-image: url("./icons/close-icon.svg");  
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    aspect-ratio: 1;
+}
+
+.add_icon {
+    width: 48px;
+    aspect-ratio: 1;
+    background-image: url("./icons/add-icon.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.success_icon {
+    width: 55px;
+    aspect-ratio: 1;
+    background-image: url("./icons/success_icon.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.table {
+    border-radius: 0.5rem;
+    /* border: var(--clr-border-light) 1px solid; */
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+  
+.table_header{
+    font-size: 14px;
+    color: var(--clr-text-light);
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: 1px var(--clr-border-light) solid;
+    background-color: var(--clr-neutral-200);
+}
+  
+.row_header{
+    font-weight: var(--fw-md);
+}
+  
+.row {
+    display: grid;
+    grid-template-columns: 150px 240px 140px 79px 97px auto;
+    padding-block: 0.75rem
+}
+
+.row:hover {
+    background-color: var(--clr-neutral-200);
+}
+  
+.row_body{
+    font-size: 14px;
+    color: var(--clr-text-dark);
+    border-bottom: 1px var(--clr-border-light) solid
+}
+  
+.col {
+    align-self: center;
+    padding-inline: 1.5rem;
+}
+
+.col2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+}

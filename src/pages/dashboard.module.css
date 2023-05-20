@@ -1,0 +1,49 @@
+.dashboard {
+    height: 100vh;
+    width: 100vw;
+}
+
+.dashboard_body {
+    display: grid;
+    grid-template-rows: 65px auto;
+    gap: 1.5rem;
+    padding-block: 2.4rem;
+}
+
+.dashboard_body_main {
+    display: grid;
+    grid-template-columns: 380px auto;
+    gap: 1.5rem;
+}
+
+.toast_container {
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+    transition: transform 0.3s ease;
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
+.form_container {
+    display: grid;
+    align-self: flex-start;
+    padding: 1.5rem;
+    gap: 1.25rem;
+    border-radius: 0.75rem;
+    /* border: 1px var(--clr-border-light) solid; */
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.table_container {
+    align-self: flex-start;
+}
+
