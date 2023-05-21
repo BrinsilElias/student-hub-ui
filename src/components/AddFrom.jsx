@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Dropdown from './Dropdown';
 import React, { useState, useRef } from 'react';
 import utilStyle from "../utils.module.css"
 
@@ -13,14 +14,6 @@ const inputStyle = {
     padding: '0.4rem 0.8rem',
     borderRadius: '0.5rem',
     border: '1px solid var(--clr-border-dark)',
-}
-
-const selectStyle = {
-    padding: '0.5rem 0.8rem',
-    borderRadius: '0.5rem',
-    border: '1px solid var(--clr-border-dark)',
-    fontSize: '14px',
-    color: 'var(--clr-text-light)'
 }
 
 const labelStyle = {
@@ -49,6 +42,8 @@ const errorStyle = {
 
 function AddFrom( {onFormSubmit} ) {
   const formRef = useRef(null);
+  const classDropdownRef = useRef();
+  const divisionDropdownRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     date_of_birth: '',
@@ -56,11 +51,33 @@ function AddFrom( {onFormSubmit} ) {
     division: '',
     gender: '',
   });
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [nameError, setNameError] = useState('');
   const [dobError, setDobError] = useState('');
   const [classError, setClassError] = useState('');
   const [divisionError, setDivisionError] = useState('');
   const [genderError, setGenderError] = useState('');
+
+  const select_class = [
+    { value: "I", label: "Class I" },
+    { value: "II", label: "Class II" },
+    { value: "III", label: "Class III" },
+    { value: "IV", label: "Class IV" },
+    { value: "V", label: "Class V" },
+    { value: "VI", label: "Class VI" },
+    { value: "VII", label: "Class VII" },
+    { value: "VIII", label: "Class VIII" },
+    { value: "IX", label: "Class IX" },
+    { value: "X", label: "Class X" },
+    { value: "XI", label: "Class XI" },
+    { value: "XII", label: "Class XII" }
+  ]
+
+  const select_division = [
+    { value: "A", label: "Division A" },
+    { value: "B", label: "Division B" },
+    { value: "C", label: "Division C" },
+  ]
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,8 +87,17 @@ function AddFrom( {onFormSubmit} ) {
     }));
   };
 
+  const handleSelectChange = (option, name) => {
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: option.value,
+      }));
+  }
+
   const handleClear = () => {
     formRef.current.reset()
+    classDropdownRef.current.clear();
+    divisionDropdownRef.current.clear();
     setFormData({ name: '', date_of_birth: '' ,student_class: '', division: '', gender: '' });
     setNameError(false)
     setDobError(false)
@@ -126,9 +152,8 @@ function AddFrom( {onFormSubmit} ) {
 
     // If the form is valid, proceed with form submission
     if (isFormValid) {
-
-    console.log('Form data:', formData);
-        axios.post('http://localhost:8080/api/students', formData)
+        console.log('Form data:', formData);
+        axios.post('/api/students', formData)
             .then((response) => {
             // Handle the response from the backend if needed
             console.log('Form submission successful');
@@ -138,12 +163,14 @@ function AddFrom( {onFormSubmit} ) {
             // Handle any error that occurred during the submission
             console.error('Form submission failed:', error);
             });
-        
+        setFormSubmitted(true);
         formRef.current.reset()
         handleClear()
+        
     }
 
   }
+  
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -177,43 +204,29 @@ function AddFrom( {onFormSubmit} ) {
             </div>
             <div style={editInputStyle}>
                 <label style={labelStyle} htmlFor="class-input">Class</label>
-                <select style={{...selectStyle, borderColor: classError ? 'var(--clr-error)' : 'var(--clr-border-dark)'}} 
-                        name='student_class' 
-                        id='class-input'
-                        value={formData.student_class}
-                        onChange={handleChange}
-                        onFocus= {() => {setClassError('')}}
-                >
-                    <option value="">Select</option>
-                    <option value='I'>I</option>
-                    <option value='II'>II</option>
-                    <option value='III'>III</option>
-                    <option value='IV'>IV</option>
-                    <option value='V'>V</option>
-                    <option value='VI'>VI</option>
-                    <option value='VII'>VII</option>
-                    <option value='VIII'>VIII</option>
-                    <option value='XI'>IX</option>
-                    <option value='X'>X</option>
-                    <option value='XI'>XI</option>
-                    <option value='XII'>XII</option>
-                </select>
+                <Dropdown 
+                        placeHolder="Select..."
+                        ref={classDropdownRef} 
+                        options={select_class} 
+                        name="student_class" 
+                        onChange={(option) => handleSelectChange(option, "student_class")} 
+                        key={formSubmitted ? 'dropdown-reset' : 'dropdown'}
+                        formSubmitted={formSubmitted}
+                        error={classError ? true: false} 
+                />
                 {classError && <p className={utilStyle.bodytextsmlight} style={errorStyle}>{classError}</p>}
             </div>
             <div style={editInputStyle}>
                 <label style={labelStyle} htmlFor="division-input">Division</label>
-                <select style={{...selectStyle, borderColor: classError ? 'var(--clr-error)' : 'var(--clr-border-dark)'}} 
-                        name='division' 
-                        id='division-input'
-                        value={formData.division}
-                        onChange={handleChange}
-                        onFocus= {() => {setDivisionError('')}}
-                >
-                    <option value=''>Select</option>
-                    <option value='A'>A</option>
-                    <option value='B'>B</option>
-                    <option value='C'>C</option>
-                </select>
+                <Dropdown 
+                        placeHolder="Select..." 
+                        ref={divisionDropdownRef}
+                        options={select_division} 
+                        name="division" 
+                        onChange={(option) => handleSelectChange(option, "division")} 
+                        formSubmitted={formSubmitted} 
+                        error={divisionError ? true: false} 
+                />
                 {divisionError && <p className={utilStyle.bodytextsmlight} style={errorStyle}>{divisionError}</p>}
             </div>
             <div style={editInputStyle}>
@@ -225,9 +238,9 @@ function AddFrom( {onFormSubmit} ) {
                                id='gender-input-male' 
                                className="check-box" 
                                value="MALE" 
-                               defaultChecked={formData.gender === 'MALE'}
                                onChange={handleChange}
                                onFocus={() => setGenderError(false)}
+                               checked={formData.gender === 'MALE'}
                         />
                         <label style={labelStyle} htmlFor="gender-input-male">Male</label>
                     </div>
@@ -237,9 +250,9 @@ function AddFrom( {onFormSubmit} ) {
                                id='gender-input-female' 
                                className="check-box" 
                                value="FEMALE"
-                               defaultChecked={formData.gender === 'FEMALE'}
                                onChange={handleChange}
                                onFocus={() => setGenderError(false)}
+                               checked={formData.gender === 'FEMALE'}
                         />
                         <label style={labelStyle} htmlFor="gender-input-female">Female</label>
                     </div>
@@ -252,7 +265,7 @@ function AddFrom( {onFormSubmit} ) {
             </div>
             <div style={{display: 'grid', gap: '0.8rem', gridTemplateColumns: '1fr 1fr', marginTop: '0.75rem'}} className='form-action'>
                 <button type='button' className={utilStyle.btn + ' ' + utilStyle.btn_cancel} onClick={handleClear}>Clear</button>
-                <button type='submit' className={utilStyle.btn + ' ' + utilStyle.btn_submit}>Add</button>
+                <button type='submit' className={utilStyle.btn + ' ' + utilStyle.btn_submit} onClick={() => setFormSubmitted(false)}>Add</button>
             </div>
         </div>
     </form>

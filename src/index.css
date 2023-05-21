@@ -98,7 +98,6 @@ select:focus {
   outline: 1.2px solid var(--clr-primary-800);
 }
 
-/* Check Box */
 input[type="radio"] {
   appearance: none;
   background-color: #fff;
@@ -118,7 +117,6 @@ input[type="radio"]:hover {
 }
 
 input[type="radio"] {
-  /* ...existing styles */
   cursor: pointer;
   display: grid;
   place-content: center;
