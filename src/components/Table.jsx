@@ -59,7 +59,7 @@ function Table(props) {
               <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem' , width: '352px'}}>
                 <div className={utilStyle.empty_image}></div>
                 <p className={utilStyle.bodytextlgdark} style={{textAlign: 'center'}}>No Details Found</p>
-                <p className={utilStyle.bodytextsmlight} style={{textAlign: 'center'}}>Add some details to the database by filling out the form. Once you've filled out the form, click the "Add" button.</p>
+                <p className={utilStyle.bodytextsmlight} style={{textAlign: 'center'}}>Looks like the database is empty. Add some details to the database by filling out the form.</p>
               </div>
             </div>
             ) : (props.student_data.slice(startIndex, endIndex).map((row) => 
