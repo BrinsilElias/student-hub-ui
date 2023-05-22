@@ -54,7 +54,15 @@ function Table(props) {
             <div className={utilStyle.col}>Gender</div>
         </div>
         <div className={utilStyle.table_body}>
-            {props.student_data.slice(startIndex, endIndex).map((row) => 
+            {props.student_data.length === 0 ? (
+            <div className={utilStyle.table_empty_body}>
+              <div style={{display: 'flex', flexDirection: 'column', gap: '0.5rem' , width: '352px'}}>
+                <div className={utilStyle.empty_image}></div>
+                <p className={utilStyle.bodytextlgdark} style={{textAlign: 'center'}}>No Details Found</p>
+                <p className={utilStyle.bodytextsmlight} style={{textAlign: 'center'}}>Add some details to the database by filling out the form. Once you've filled out the form, click the "Add" button.</p>
+              </div>
+            </div>
+            ) : (props.student_data.slice(startIndex, endIndex).map((row) => 
                 <div className={utilStyle.row + ' ' + utilStyle.row_body} key={row.id}>
                     <div className={utilStyle.col}>
                         <p className={utilStyle.bodytextsmlight}>{row.admission_no}</p>
@@ -79,7 +87,7 @@ function Table(props) {
                         {row.gender === "MALE" ? <BlueTags /> : <VioletTags />}
                     </div>
                 </div>
-            )}
+            ))}
         </div>
         <div className={utilStyle.pagination}>
             <button 
@@ -90,12 +98,14 @@ function Table(props) {
             >
                 Previous
             </button>
-            <p className={utilStyle.bodytextsmlight}>{`Page ${currentPage} of ${totalPages}`}</p>
+            <p className={utilStyle.bodytextsmlight}>
+              {totalPages > 0 ? `Page ${currentPage} of ${totalPages}` : ''}
+            </p>
             <button 
                     className={utilStyle.btn + ' ' + utilStyle.btn_next} 
                     data-icon="front-arrow"
                     onClick={goToNextPage} 
-                    disabled={currentPage === totalPages}
+                    disabled={currentPage === totalPages || totalPages === 0}
             >
                 Next
             </button>

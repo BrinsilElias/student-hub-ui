@@ -80,15 +80,23 @@ header {
   background-color: var(--clr-primary-800);
 }
 
-input::placeholder {
-  font-size: 0.875rem;
-  color: var(--clr-text-light);
-}
-
 button {
   cursor: pointer;
   border: none;
 }
+
+input {
+  font-size: 0.875rem;
+  font-weight: var(--fw-md);
+  color: var(--clr-text-dark);
+}
+
+input::placeholder {
+  font-size: 0.875rem;
+  font-weight: var(--fw-rg);
+  color: var(--clr-text-light);
+}
+
 
 input:focus {
   outline: 1.2px solid var(--clr-primary-800);

@@ -23,7 +23,7 @@ function Dashboard() {
   useEffect(() =>{
     const fetchData = async () => {
         try {
-          const response = await axios.get('/api/students');
+          const response = await axios.get('http://localhost:8080/api/students');
           setData(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);

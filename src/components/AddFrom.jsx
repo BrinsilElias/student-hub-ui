@@ -153,7 +153,7 @@ function AddFrom( {onFormSubmit} ) {
     // If the form is valid, proceed with form submission
     if (isFormValid) {
         console.log('Form data:', formData);
-        axios.post('/api/students', formData)
+        axios.post('http://localhost:8080/api/students', formData)
             .then((response) => {
             // Handle the response from the backend if needed
             console.log('Form submission successful');

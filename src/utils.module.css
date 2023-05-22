@@ -17,7 +17,7 @@
 
 .bodytextlgdark {
     font-size: 1rem;
-    font-weight: var(--fw-rg);
+    font-weight: var(--fw-sb);
     color: var(--clr-text-dark);
 }
 
@@ -164,7 +164,6 @@
 
 .table {
     border-radius: 0.5rem;
-    /* border: var(--clr-border-light) 1px solid; */
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
   
@@ -174,6 +173,24 @@
     border-radius: 0.5rem 0.5rem 0 0;
     border-bottom: 1px var(--clr-border-light) solid;
     background-color: var(--clr-neutral-200);
+}
+
+.table_empty_body {
+    height: 530px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px var(--clr-border-light) solid;
+}
+
+.empty_image {
+    align-self: center;
+    width: 48px;
+    aspect-ratio: 1;
+    background-image: url("./icons/empty-db-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
   
 .row_header{
